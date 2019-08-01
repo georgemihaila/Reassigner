@@ -1,0 +1,65 @@
+﻿@using Newtonsoft.Json;
+
+@{
+    ViewData["Title"] = "Rules";
+}
+
+@model RulesViewModel
+
+@if (Model.Rules.Count() != 0)
+{
+    <table class="ui definition table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Last ran</th>
+                <th>Enabled</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rule in Model.Rules)
+            {
+            <tr>
+                <td>@rule.ID</td>
+                <td>@rule.Description</td>
+                <td>@rule.LastRan</td>
+                <td>
+                    <div class="ui toggle checkbox">
+                        <input id="check_@rule.ID" type="checkbox" @((rule.Enabled) ? "checked" : "") name="public">
+                        <label></label>
+                    </div>
+                </td>
+                <td>
+                    <button class="ui right labeled icon button">
+                        Edit
+                        <i class="edit icon blue"></i>
+                    </button>
+                </td>
+                <td>
+                    <button class="ui right labeled icon button">
+                        <i class="play icon green"></i>
+                        Run now
+                    </button>
+                </td>
+                <td>
+                    <button class="ui right labeled icon button">
+                        Delete
+                        <i class="delete icon red"></i>
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    @JsonConvert.SerializeObject(Model.Properties.ToList().Select(o => o.Name + ":" + o.PropertyType))
+}
+else
+{
+    <h3>No rules.</h3>
+}
+<button class="ui button">New rule</button>

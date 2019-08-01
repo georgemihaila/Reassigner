@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reassigner - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="pusher">
+            <div class="ui inverted vertical masthead segment">
+                <div class="ui container">
+                    <h1 class="ui inverted header">
+                        Reassigner - @ViewData["Title"]
+                    </h1>
+                </div>
+
+                <div class="ui container">
+                    <div class="ui secondary inverted pointing menu">
+                        <a asp-controller="Home" asp-action="Index" class="item">Dashboard</a>
+                        <a asp-controller="Rules" asp-action="Index" class="item">Rules</a>
+                        <a asp-controller="Home" asp-action="AgentManagement" class="item">Agent management</a>
+                        <a asp-controller="Home" asp-action="Reports" class="item">Reports</a>
+                        <a asp-controller="Home" asp-action="Settings" class="item">Settings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui container">
+                @RenderBody()
+            </div>
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
+</body>
+</html>

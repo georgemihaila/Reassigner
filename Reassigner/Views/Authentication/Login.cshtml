@@ -1,0 +1,22 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
+<form class="ui form" method="post">
+    <div class="field">
+        <label>@Html.DisplayNameFor(m => m.Username)</label>
+        <input type="text" placeholder="@Html.DisplayNameFor(m => m.Username)" autocomplete="on" id="username" name="username" asp-for="Username">
+    </div>
+    <div class="field">
+        <label>@Html.DisplayNameFor(m => m.Password)</label>
+        <input type="password" autocomplete="on" placeholder="@Html.DisplayNameFor(m => m.Password)" id="password" name="password" asp-for="Password">
+    </div>
+    <button class="ui button" type="submit">Sign in</button>
+</form>

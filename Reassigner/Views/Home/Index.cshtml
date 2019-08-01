@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@model DashboardViewModel
+
+<partial name="_ChartJSImports" />
+
+<div class="text-center">
+    <div class="ui statistics">
+        <div class="ui tiny statistic">
+            <div class="value">
+                @Model.Rules
+            </div>
+            <div class="label">
+                Rule@((@Model.Rules != 1)?"s":string.Empty)
+            </div>
+        </div>
+        <div class="ui tiny statistic">
+            <div class="value">
+                @Model.Queued
+            </div>
+            <div class="label">
+                Queued ticket@((@Model.Queued != 1) ? "s" : string.Empty)
+            </div>
+        </div>
+        <div class="ui tiny statistic">
+            <div class="value">
+                @Model.Unassigned
+            </div>
+            <div class="label">
+                Unassigned ticket@((@Model.Unassigned != 1) ? "s" : string.Empty)
+            </div>
+        </div>
+        <div class="ui tiny statistic">
+            <div class="value">
+                @Model.Assigned
+            </div>
+            <div class="label">
+                Assigned ticket@((@Model.Assigned != 1) ? "s" : string.Empty)
+            </div>
+        </div>
+        <div class="ui tiny statistic">
+            <div class="value">
+                @Model.Total
+            </div>
+            <div class="label">
+                Total tickets
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="pie" width="400"></canvas>
+<script>
+var ctx = document.getElementById('pie').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Queued tickets', 'Unassigned tickets', 'Assigned tickets'],
+        datasets: [{
+            label: '# of Votes',
+            data: [@Model.Queued, @Model.Unassigned, @Model.Assigned],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
+});
+</script>

@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Reassigner</name>
+    </assembly>
+    <members>
+        <member name="T:Reassigner.ApplicationDbContext">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.ApplicationDbContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Reassigner.ApplicationDbContext"/> class.
+            </summary>
+        </member>
+        <member name="M:Reassigner.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Reassigner.ApplicationDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Reassigner.ApplicationDbContext"/> class.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="P:Reassigner.ApplicationDbContext.Tickets">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.ApplicationDbContext.Agents">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.ApplicationDbContext.Rules">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.ApplicationDbContext.ReassignmentEntries">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Authentication.ActiveDirectoryAuthenticationService">
+            <summary>
+            Represents an Active Directory authentication service.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.Authentication.ActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
+            <summary>
+            Validates user credentials against Active Directory.
+            </summary>
+            <returns>A value indicating whether the validation was successful.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if an argument is null or empty.</exception>
+        </member>
+        <member name="M:Reassigner.Infrastructure.Authentication.ActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String)">
+            <summary>
+            Validates user credentials against Active Directory.
+            </summary>
+            <returns>A value indicating whether the validation was successful.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if an argument is null or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if the <paramref name="domainUsername"/> parameter does not contain excatly one '\' domain-username separation character.</exception>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService">
+            <summary>
+            Represents an Active Directory authentication service.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
+            <summary>
+            Validates user credentials against Active Directory.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String)">
+            <summary>
+            Validates user credentials against Active Directory.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.IAgent">
+            <summary>
+            Represents an agent.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IAgent.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IAgent.Surname">
+            <summary>
+            Gets or sets the surname.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IAgent.Username">
+            <summary>
+            Gets or sets the username.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.IReassignmentEntry`3">
+            <summary>
+            Represents a reassignment entry.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Ticket">
+            <summary>
+            Gets or sets the ticket.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Agent">
+            <summary>
+            Gets or sets the agent.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Rule">
+            <summary>
+            Gets or sets the rule.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.IRule">
+            <summary>
+            Represents a rule.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IRule.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Reassigner.Infrastructure.Entities.IRule"/> is enabled.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IRule.LastRan">
+            <summary>
+            Gets or sets the time the rule was last ran.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IRule.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.ITicket">
+            <summary>
+            Represents a ticket.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.ITicket.State">
+            <summary>
+            Gets or sets the state of the ticket.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.IUnique">
+            <summary>
+            Represents a unique entity.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IUnique.ID">
+            <summary>
+            Gets or sets the entity ID.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.ReassignmentEntry">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.ID">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.Ticket">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.Agent">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.Rule">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.CompletedTime">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Reassigner.Infrastructure.Entities.ReassignmentEntry"/> is completed.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.Rule">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Rule.ID">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Rule.Enabled">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Rule.LastRan">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Rule.Description">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Entities.Ticket">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <seealso cref="T:Reassigner.Infrastructure.Entities.ITicket" />
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Ticket.ID">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Ticket.State">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.IReassignerContext`4">
+            <summary>
+            Represents an application context.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.Tickets">
+            <summary>
+            Gets or sets the tickets.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.Agents">
+            <summary>
+            Gets or sets the agents
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.Rules">
+            <summary>
+            Gets or sets the rules.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.ReassignmentEntries">
+            <summary>
+            Gets or sets the reassignment entries.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.ReassigningService">
+            <summary>
+            Represents a reassigning service.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.ReassigningService.#ctor(Microsoft.Extensions.DependencyInjection.IServiceScopeFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.ReassigningService"/> class.
+            </summary>
+            <param name="serviceScopeFactory">The service scope factory.</param>
+        </member>
+        <member name="M:Reassigner.Infrastructure.ReassigningService.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            Triggered when the application host is ready to start the service.
+            </summary>
+            <param name="cancellationToken">Indicates that the start process has been aborted.</param>
+        </member>
+        <member name="M:Reassigner.Infrastructure.ReassigningService.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Triggered when the application host is performing a graceful shutdown.
+            </summary>
+            <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+        </member>
+        <member name="M:Reassigner.Infrastructure.ReassigningService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method is called when the <see cref="T:Microsoft.Extensions.Hosting.IHostedService" /> starts. The implementation should return a task that represents
+            the lifetime of the long running operation(s) being performed.
+            </summary>
+            <param name="stoppingToken">Triggered when <see cref="M:Microsoft.Extensions.Hosting.IHostedService.StopAsync(System.Threading.CancellationToken)" /> is called.</param>
+        </member>
+        <member name="M:Reassigner.Infrastructure.ReassigningService.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.RNG">
+            <summary>
+            Represents a random number generator based on the <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.RNG.GetInstance">
+            <summary>
+            Gets an instance of the current class.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.RNG.GetRandomString(System.Int32)">
+            <summary>
+            Gets a random string.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Models.DashboardViewModel">
+            <summary>
+            Represents the model used for displaying statistics on the dashboard.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DashboardViewModel.Rules">
+            <summary>
+            Gets or sets the number of rules.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DashboardViewModel.Total">
+            <summary>
+            Gets the total number of tickets.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DashboardViewModel.Assigned">
+            <summary>
+            Gets or sets the number of assigned tickets.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DashboardViewModel.Unassigned">
+            <summary>
+            Gets or sets the number of unassigned tickets.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DashboardViewModel.Queued">
+            <summary>
+            Gets or sets the number of queued tickets.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Models.LoginViewModel">
+            <summary>
+            Represents a model used for logging in.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.LoginViewModel.Username">
+            <summary>
+            Gets or sets the username.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.LoginViewModel.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.LoginViewModel.ReturnUrl">
+            <summary>
+            Gets or sets the return URL.
+            </summary>
+            <value>
+            The return URL.
+            </value>
+        </member>
+        <member name="T:Reassigner.Models.RulesViewModel">
+            <summary>
+            Represents the model used for displaying the rules page.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.RulesViewModel.Rules">
+            <summary>
+            Gets or sets the rules.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.RulesViewModel.Properties">
+            <summary>
+            Gets or sets the properties of the concrete type of ticket.
+            </summary>
+        </member>
+    </members>
+</doc>
