@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Reassigner.Models
 {
     /// <summary>
-    /// Represents the model used for displaying the rules page.
+    /// Represents the model used for displaying the agents page.
     /// </summary>
-    public class RulesViewModel : AListPropertyCollection<Rule>
+    public class AgentViewModel : AListPropertyCollection<Agent>
     {
 
     }

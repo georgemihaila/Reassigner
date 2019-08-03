@@ -5,30 +5,36 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Reassigner.Infrastructure;
 using Reassigner.Models;
 
 namespace Reassigner.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    [Route("Rules/{action}")]
-    public class RulesController : Controller
+    [Route("Reports/[action]")]
+    public class ReportController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public RulesController(ApplicationDbContext context)
+        public ReportController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult Index()
         {
-            return View(new RulesViewModel()
+            return View(new ReportsViewModel()
             {
-                Collection = _context.Rules.ToList()
+                Collection = _context.ReassignmentEntries
             });
         }
 
-
+        public IActionResult RuleReport(string ruleId)
+        {
+            return View(new DetailedReportViewModel()
+            {
+                Rule = _context.Rules.FirstOrDefault(o => o.ID == ruleId),
+                Entries = _context.ReassignmentEntries.Where(o => o.Rule.ID == ruleId)
+            });
+        }
     }
 }

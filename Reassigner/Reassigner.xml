@@ -9,6 +9,11 @@
             <inheritdoc/>
             </summary>
         </member>
+        <member name="E:Reassigner.ApplicationDbContext.DbContextChanged">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
         <member name="M:Reassigner.ApplicationDbContext.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Reassigner.ApplicationDbContext"/> class.
@@ -36,6 +41,53 @@
             </summary>
         </member>
         <member name="P:Reassigner.ApplicationDbContext.ReassignmentEntries">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.ApplicationDbContext.SaveChanges">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.ApplicationDbContext.SaveChanges(System.Boolean)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.ApplicationDbContext.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.ApplicationDbContext.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.AListPropertyCollection`1">
+            <summary>
+            Represents an abstract implementation of the <see cref="T:Reassigner.Infrastructure.IListPropertyCollection`1"/>, basing the <see cref="P:Reassigner.Infrastructure.AListPropertyCollection`1.Properties"/> collection on the type <see cref="!:T"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <seealso cref="T:Reassigner.Infrastructure.IListPropertyCollection`1" />
+        </member>
+        <member name="P:Reassigner.Infrastructure.AListPropertyCollection`1.Collection">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.AListPropertyCollection`1.GetEnumerator">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.AListPropertyCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.AListPropertyCollection`1.Properties">
             <summary>
             <inheritdoc/>
             </summary>
@@ -73,6 +125,22 @@
         <member name="M:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String)">
             <summary>
             Validates user credentials against Active Directory.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Authentication.MockActiveDirectoryAuthenticationService">
+            <summary>
+            Represents a mock implementation for the <see cref="T:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService"/> interface.
+            </summary>
+            <seealso cref="T:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService" />
+        </member>
+        <member name="M:Reassigner.Infrastructure.Authentication.MockActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.Authentication.MockActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String)">
+            <summary>
+            <inheritdoc/>
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.Entities.IAgent">
@@ -226,6 +294,31 @@
             <inheritdoc/>
             </summary>
         </member>
+        <member name="T:Reassigner.Infrastructure.IListPropertyCollection`1">
+            <summary>
+            Encapsulates a list of items and their corresponding <see cref="T:System.Reflection.PropertyInfo"/> items.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.IListPropertyCollection`1.Collection">
+            <summary>
+            Gets or sets the collection.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.IListPropertyCollection`1.Properties">
+            <summary>
+            Gets the properties.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.INotifyDbContextChanged">
+            <summary>
+            Notifies clients that <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> data has changed.
+            </summary>
+        </member>
+        <member name="E:Reassigner.Infrastructure.INotifyDbContextChanged.DbContextChanged">
+            <summary>
+            Occurs when <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> data changes.
+            </summary>
+        </member>
         <member name="T:Reassigner.Infrastructure.IReassignerContext`4">
             <summary>
             Represents an application context.
@@ -249,6 +342,11 @@
         <member name="P:Reassigner.Infrastructure.IReassignerContext`4.ReassignmentEntries">
             <summary>
             Gets or sets the reassignment entries.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.ReassignerContextExtensions">
+            <summary>
+            Provides extensions for the <see cref="T:Reassigner.Infrastructure.IReassignerContext`4"/> interface.
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.ReassigningService">
@@ -301,6 +399,30 @@
             Gets a random string.
             </summary>
         </member>
+        <member name="T:Reassigner.Infrastructure.TypeExtensions">
+            <summary>
+            Provides type methods based on the <see cref="N:System.Reflection"/> namespace.
+            </summary>
+        </member>
+        <member name="F:Reassigner.Infrastructure.TypeExtensions._genericPropsDictionary">
+            <summary>
+            Dictionary for storing properties of generic type arguments.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.TypeExtensions.GetPropertiesOfGenericArgument(System.Type,System.Int32)">
+            <summary>
+            Gets the properties from the generic arguments of a type.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="genericIndex">The index of the generic type.</param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+            <exception cref="T:System.IndexOutOfRangeException"></exception>
+        </member>
+        <member name="T:Reassigner.Models.AgentViewModel">
+            <summary>
+            Represents the model used for displaying the agents page.
+            </summary>
+        </member>
         <member name="T:Reassigner.Models.DashboardViewModel">
             <summary>
             Represents the model used for displaying statistics on the dashboard.
@@ -331,6 +453,21 @@
             Gets or sets the number of queued tickets.
             </summary>
         </member>
+        <member name="T:Reassigner.Models.DetailedReportViewModel">
+            <summary>
+            Represents the model used for displaying detailed reports about a rule.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DetailedReportViewModel.Rule">
+            <summary>
+            Gets or sets the rule.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Models.DetailedReportViewModel.Entries">
+            <summary>
+            Gets or sets the entries associated with this rule.
+            </summary>
+        </member>
         <member name="T:Reassigner.Models.LoginViewModel">
             <summary>
             Represents a model used for logging in.
@@ -354,19 +491,15 @@
             The return URL.
             </value>
         </member>
+        <member name="T:Reassigner.Models.ReportsViewModel">
+            <summary>
+            Represents the model used for displaying the reports page.
+            </summary>
+            <seealso cref="T:Reassigner.Infrastructure.AListPropertyCollection`1" />
+        </member>
         <member name="T:Reassigner.Models.RulesViewModel">
             <summary>
             Represents the model used for displaying the rules page.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Models.RulesViewModel.Rules">
-            <summary>
-            Gets or sets the rules.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Models.RulesViewModel.Properties">
-            <summary>
-            Gets or sets the properties of the concrete type of ticket.
             </summary>
         </member>
     </members>

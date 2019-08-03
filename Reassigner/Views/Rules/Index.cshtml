@@ -6,7 +6,7 @@
 
 @model RulesViewModel
 
-@if (Model.Rules.Count() != 0)
+@if (Model.Collection.Count() != 0)
 {
     <table class="ui definition table">
         <thead>
@@ -18,48 +18,65 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var rule in Model.Rules)
+            @foreach (var rule in Model.Collection)
             {
-            <tr>
-                <td>@rule.ID</td>
-                <td>@rule.Description</td>
-                <td>@rule.LastRan</td>
-                <td>
-                    <div class="ui toggle checkbox">
-                        <input id="check_@rule.ID" type="checkbox" @((rule.Enabled) ? "checked" : "") name="public">
-                        <label></label>
-                    </div>
-                </td>
-                <td>
-                    <button class="ui right labeled icon button">
-                        Edit
-                        <i class="edit icon blue"></i>
-                    </button>
-                </td>
-                <td>
-                    <button class="ui right labeled icon button">
-                        <i class="play icon green"></i>
-                        Run now
-                    </button>
-                </td>
-                <td>
-                    <button class="ui right labeled icon button">
-                        Delete
-                        <i class="delete icon red"></i>
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@rule.ID</td>
+                    <td>@rule.Description</td>
+                    <td>@rule.LastRan</td>
+                    <td>
+                        <div class="ui toggle checkbox">
+                            <input id="check_@rule.ID" type="checkbox" @((rule.Enabled) ? "checked" : "") name="public">
+                            <label></label>
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-controller="Report" asp-action="RuleReport" asp-route-ruleId="@rule.ID" >
+                            <div class="ui right labeled icon button">
+                                Reports
+                                <i class="file alternate outline icon red"></i>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="ui right labeled icon button">
+                            Edit
+                            <i class="edit icon blue"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="ui right labeled icon button">
+                            <i class="play icon green"></i>
+                            Run now
+                        </button>
+                    </td>
+                    <td>
+                        <button class="ui right labeled icon button">
+                            Delete
+                            <i class="delete icon red"></i>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
-
-    @JsonConvert.SerializeObject(Model.Properties.ToList().Select(o => o.Name + ":" + o.PropertyType))
 }
 else
 {
     <h3>No rules.</h3>
 }
-<button class="ui button">New rule</button>
+<script>
+    @{
+        Dictionary<string, string> dict = new Dictionary<string, string>();
+        Model.Properties.ToList().ForEach(p => dict[p.Name] = p.PropertyType.Name);
+    }
+    var typeDict = @Html.Raw(JsonConvert.SerializeObject(dict));
+</script>
+<button class="ui right labeled icon button">
+    New rule
+    <i class="file outline icon green"></i>
+</button>

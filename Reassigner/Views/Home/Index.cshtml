@@ -6,46 +6,47 @@
 @model DashboardViewModel
 
 <partial name="_ChartJSImports" />
+<script type="text/javascript" src="~/js/wsclient.js"></script>
 
 <div class="text-center">
     <div class="ui statistics">
         <div class="ui tiny statistic">
-            <div class="value">
+            <div id="rv" class="value">
                 @Model.Rules
             </div>
-            <div class="label">
-                Rule@((@Model.Rules != 1)?"s":string.Empty)
+            <div id="rd" class="label">
+                Rule@((@Model.Rules != 1) ? "s" : string.Empty)
             </div>
         </div>
         <div class="ui tiny statistic">
-            <div class="value">
+            <div id="qv" class="value">
                 @Model.Queued
             </div>
-            <div class="label">
+            <div id="qd" class="label">
                 Queued ticket@((@Model.Queued != 1) ? "s" : string.Empty)
             </div>
         </div>
         <div class="ui tiny statistic">
-            <div class="value">
+            <div id="uv" class="value">
                 @Model.Unassigned
             </div>
-            <div class="label">
+            <div id="ud" class="label">
                 Unassigned ticket@((@Model.Unassigned != 1) ? "s" : string.Empty)
             </div>
         </div>
         <div class="ui tiny statistic">
-            <div class="value">
+            <div id="av" class="value">
                 @Model.Assigned
             </div>
-            <div class="label">
+            <div id="ad" class="label">
                 Assigned ticket@((@Model.Assigned != 1) ? "s" : string.Empty)
             </div>
         </div>
         <div class="ui tiny statistic">
-            <div class="value">
+            <div id="tv" class="value">
                 @Model.Total
             </div>
-            <div class="label">
+            <div  id="td" class="label">
                 Total tickets
             </div>
         </div>
@@ -54,14 +55,15 @@
 
 <canvas id="pie" width="400"></canvas>
 <script>
-var ctx = document.getElementById('pie').getContext('2d');
-var myChart = new Chart(ctx, {
+    function buildChart(queued, unassigned, assigned) {
+         var ctx = document.getElementById('pie').getContext('2d');
+    var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
         labels: ['Queued tickets', 'Unassigned tickets', 'Assigned tickets'],
         datasets: [{
             label: '# of Votes',
-            data: [@Model.Queued, @Model.Unassigned, @Model.Assigned],
+            data: [queued, unassigned, assigned],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -76,4 +78,9 @@ var myChart = new Chart(ctx, {
         }]
     }
 });
+}
+    $(document).ready(function () {
+        buildChart(@Model.Queued, @Model.Unassigned, @Model.Assigned);
+        subscribeWS("dashboard");
+    });
 </script>

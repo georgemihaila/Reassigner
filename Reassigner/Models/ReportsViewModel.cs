@@ -3,15 +3,15 @@ using Reassigner.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Reassigner.Models
 {
     /// <summary>
-    /// Represents the model used for displaying the rules page.
+    /// Represents the model used for displaying the reports page.
     /// </summary>
-    public class RulesViewModel : AListPropertyCollection<Rule>
+    /// <seealso cref="Reassigner.Infrastructure.AListPropertyCollection{Rule}" />
+    public class ReportsViewModel : AListPropertyCollection<ReassignmentEntry>
     {
 
     }

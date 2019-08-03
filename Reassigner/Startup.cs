@@ -33,7 +33,7 @@ namespace Reassigner
                     .AddNewtonsoftJson();
             services.AddRazorPages();
             services.AddHostedService<ReassigningService>();
-            services.AddSingleton<IActiveDirectoryAuthenticationService, ActiveDirectoryAuthenticationService>();
+            services.AddSingleton<IActiveDirectoryAuthenticationService, MockActiveDirectoryAuthenticationService>();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(CookieAuthenticationDefaults.AuthenticationScheme, authBuilder =>
@@ -73,6 +73,8 @@ namespace Reassigner
             app.UseAuthorization();
 
             app.UseAuthentication();
+
+            app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
             {

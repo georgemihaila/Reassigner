@@ -11,24 +11,22 @@ using Reassigner.Models;
 namespace Reassigner.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    [Route("Rules/{action}")]
-    public class RulesController : Controller
+    [Route("Agents/[action]")]
+    public class AgentController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public RulesController(ApplicationDbContext context)
+        public AgentController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult Index()
         {
-            return View(new RulesViewModel()
+            return View(new AgentViewModel()
             {
-                Collection = _context.Rules.ToList()
+                Collection = _context.Agents.ToList(),
             });
         }
-
-
     }
 }

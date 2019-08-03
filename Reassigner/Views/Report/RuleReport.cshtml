@@ -1,0 +1,16 @@
+﻿@using System.Reflection;
+
+@{
+    ViewData["Title"] = (Model.Rule != null)?"Report for rule " + Model.Rule.ID : "Report";
+}
+
+@model DetailedReportViewModel
+
+@if (Model == null)
+{
+    <h1>No data found.</h1>
+}
+else
+{
+    var props = Model.Rule.GetType().GetProperties();
+}

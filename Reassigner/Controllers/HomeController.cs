@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Reassigner.Infrastructure;
+using Reassigner.Infrastructure.Entities;
 using Reassigner.Models;
 
 namespace Reassigner.Controllers
