@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Reassigner.Infrastructure.Entities;
 using Reassigner.Models;
 
 namespace Reassigner.Controllers
@@ -22,10 +23,7 @@ namespace Reassigner.Controllers
 
         public IActionResult Index()
         {
-            return View(new ReportsViewModel()
-            {
-                Collection = _context.ReassignmentEntries
-            });
+            return View(_context.ReassignmentEntries as IEnumerable<IReassignmentEntry<ITicket, IAgent, IRule>>);
         }
 
         public IActionResult RuleReport(string ruleId)

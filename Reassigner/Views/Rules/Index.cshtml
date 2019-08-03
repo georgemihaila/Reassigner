@@ -1,14 +1,16 @@
-﻿@using Newtonsoft.Json;
+﻿@using Reassigner.Infrastructure;
+@using Reassigner.Infrastructure.Entities;
+@using Newtonsoft.Json;
 
 @{
     ViewData["Title"] = "Rules";
 }
 
-@model RulesViewModel
+@model IEnumerable<IRule>
 
-@if (Model.Collection.Count() != 0)
+@if (Model?.Count() != 0)
 {
-    <table class="ui definition table">
+    <table id="rules_table" class="ui definition table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -22,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var rule in Model.Collection)
+            @foreach (var rule in Model)
             {
                 <tr>
                     <td>@rule.ID</td>
@@ -30,12 +32,12 @@
                     <td>@rule.LastRan</td>
                     <td>
                         <div class="ui toggle checkbox">
-                            <input id="check_@rule.ID" type="checkbox" @((rule.Enabled) ? "checked" : "") name="public">
-                            <label></label>
+                            <input id="check_@rule.ID" onclick="switchRule('@rule.ID')" type="checkbox" @((rule.Enabled) ? "checked" : "") name="public">
+                            <label for="check_@rule.ID"></label>
                         </div>
                     </td>
                     <td>
-                        <a asp-controller="Report" asp-action="RuleReport" asp-route-ruleId="@rule.ID" >
+                        <a asp-controller="Report" asp-action="RuleReport" asp-route-ruleId="@rule.ID">
                             <div class="ui right labeled icon button">
                                 Reports
                                 <i class="file alternate outline icon red"></i>
@@ -43,10 +45,12 @@
                         </a>
                     </td>
                     <td>
-                        <button class="ui right labeled icon button">
-                            Edit
-                            <i class="edit icon blue"></i>
-                        </button>
+                        <a asp-controller="Rules" asp-action="Edit" asp-route-id="@rule.ID">
+                            <div class="ui right labeled icon button">
+                                Edit
+                                <i class="edit icon blue"></i>
+                            </div>
+                        </a>
                     </td>
                     <td>
                         <button class="ui right labeled icon button">
@@ -70,11 +74,12 @@ else
     <h3>No rules.</h3>
 }
 <script>
-    @{
-        Dictionary<string, string> dict = new Dictionary<string, string>();
-        Model.Properties.ToList().ForEach(p => dict[p.Name] = p.PropertyType.Name);
+    function switchRule(id) {
+        let path = (!$("#check_" + id).is(":checked")) ? "disable" : "enable";
+        $.post("/Rules/" + path + "?id=" + id, function (data) {
+            console.log(data);
+        });
     }
-    var typeDict = @Html.Raw(JsonConvert.SerializeObject(dict));
 </script>
 <button class="ui right labeled icon button">
     New rule

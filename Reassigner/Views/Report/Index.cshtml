@@ -1,9 +1,42 @@
-﻿
+﻿@using Reassigner.Infrastructure.Entities;
 @{
     ViewData["Title"] = "Reports";
 }
 
-@model ReportsViewModel
+@model IEnumerable<IReassignmentEntry<ITicket, IAgent, IRule>>
+@inject ApplicationDbContext _context
 
-<h1>Index</h1>
+<h3>Reassignment history</h3>
 
+@if (Model != null)
+{
+    <table id="entries_table" class="ui definition table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Rule</th>
+                <th>Ticket</th>
+                <th>Agent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.Where(o => o.CompletedTime != null).OrderBy(o => o.CompletedTime))
+            {
+                <tr>
+                    <td>@x.CompletedTime</td>
+                    <td>
+                        <a asp-controller="Rules" asp-action="Edit" asp-route-id="@x.Rule.ID">
+                            @x.Rule.ID
+                        </a>
+                    </td>
+                    <td>@x.Ticket.ID</td>
+                    <td>@x.Agent.Name + " " + @x.Agent.Surname</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>No reassignment entries yet.</h4>
+}

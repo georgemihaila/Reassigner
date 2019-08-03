@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Reassigner.Infrastructure;
+using Reassigner.Infrastructure.Entities;
 using Reassigner.Models;
 
 namespace Reassigner.Controllers
@@ -23,10 +24,7 @@ namespace Reassigner.Controllers
 
         public IActionResult Index()
         {
-            return View(new AgentViewModel()
-            {
-                Collection = _context.Agents.ToList(),
-            });
+            return View(_context.Agents);
         }
     }
 }

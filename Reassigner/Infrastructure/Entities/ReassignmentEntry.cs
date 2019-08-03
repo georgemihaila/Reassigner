@@ -31,7 +31,7 @@ namespace Reassigner.Infrastructure.Entities
         public Rule Rule { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="ReassignmentEntry"/> is completed.
+        /// <inheritdoc/>
         /// </summary>
         public DateTime CompletedTime { get; set; }
 

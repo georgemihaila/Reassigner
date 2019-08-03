@@ -1,0 +1,28 @@
+﻿@using Reassigner.Infrastructure.Dependencies;
+@using Reassigner.Infrastructure.Entities;
+@using Newtonsoft.Json;
+
+@{
+    ViewData["Title"] = ((Model != null) ? "Edit rule " + Model.ID : "New rule");
+}
+
+@model IRule
+@inject ApplicationDbContext _context
+@inject IApplicationDependencyProvider  _dependencyProvider
+
+@{
+    Dictionary<string, string> dict = new Dictionary<string, string>();
+    _dependencyProvider.TypeImplementations[typeof(IRule)].GetProperties().ToList().ForEach(p => dict[p.Name] = p.PropertyType.Name);
+}
+<script>
+    var typeDict = @Html.Raw(JsonConvert.SerializeObject(dict));
+</script>
+
+@if (Model == null)
+{
+
+}
+else
+{
+
+}

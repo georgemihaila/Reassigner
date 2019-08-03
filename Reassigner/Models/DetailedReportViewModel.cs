@@ -14,7 +14,7 @@ namespace Reassigner.Models
         /// <summary>
         /// Gets or sets the rule.
         /// </summary>
-        public Rule Rule { get; set; }
+        public IRule Rule { get; set; }
 
         /// <summary>
         /// Gets or sets the entries associated with this rule.

@@ -33,5 +33,6 @@ namespace Reassigner.Infrastructure
                 _genericPropsDictionary[(type, genericIndex)] = args[genericIndex].GetProperties().ToList();
             return _genericPropsDictionary[(type, genericIndex)];
         }
+
     }
 }

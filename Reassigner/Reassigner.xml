@@ -65,33 +65,6 @@
             <inheritdoc/>
             </summary>
         </member>
-        <member name="T:Reassigner.Infrastructure.AListPropertyCollection`1">
-            <summary>
-            Represents an abstract implementation of the <see cref="T:Reassigner.Infrastructure.IListPropertyCollection`1"/>, basing the <see cref="P:Reassigner.Infrastructure.AListPropertyCollection`1.Properties"/> collection on the type <see cref="!:T"/>.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <seealso cref="T:Reassigner.Infrastructure.IListPropertyCollection`1" />
-        </member>
-        <member name="P:Reassigner.Infrastructure.AListPropertyCollection`1.Collection">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="M:Reassigner.Infrastructure.AListPropertyCollection`1.GetEnumerator">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="M:Reassigner.Infrastructure.AListPropertyCollection`1.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.AListPropertyCollection`1.Properties">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
         <member name="T:Reassigner.Infrastructure.Authentication.ActiveDirectoryAuthenticationService">
             <summary>
             Represents an Active Directory authentication service.
@@ -143,6 +116,32 @@
             <inheritdoc/>
             </summary>
         </member>
+        <member name="T:Reassigner.Infrastructure.Dependencies.ApplicationDependencies">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Dependencies.ApplicationDependencies.TypeImplementations">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            
+        </member>
+        <member name="M:Reassigner.Infrastructure.Dependencies.ApplicationDependencies.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.Dependencies.ApplicationDependencies"/> class.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Dependencies.IApplicationDependencyProvider">
+            <summary>
+            Represents a dependency provider.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Dependencies.IApplicationDependencyProvider.TypeImplementations">
+            <summary>
+            Gets or sets the required type implementations.
+            </summary>
+        </member>
         <member name="T:Reassigner.Infrastructure.Entities.IAgent">
             <summary>
             Represents an agent.
@@ -181,6 +180,11 @@
         <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Rule">
             <summary>
             Gets or sets the rule.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.CompletedTime">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Reassigner.Infrastructure.Entities.ReassignmentEntry"/> is completed.
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.Entities.IRule">
@@ -250,7 +254,7 @@
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.CompletedTime">
             <summary>
-            Gets or sets a value indicating whether this <see cref="T:Reassigner.Infrastructure.Entities.ReassignmentEntry"/> is completed.
+            <inheritdoc/>
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.Entities.Rule">
@@ -294,19 +298,23 @@
             <inheritdoc/>
             </summary>
         </member>
-        <member name="T:Reassigner.Infrastructure.IListPropertyCollection`1">
+        <member name="T:Reassigner.Infrastructure.Exceptions.InvalidTypeImplementationException">
             <summary>
-            Encapsulates a list of items and their corresponding <see cref="T:System.Reflection.PropertyInfo"/> items.
+            The exception that is thrown when a type is incorrectly implemented.
             </summary>
+            <seealso cref="T:System.Exception" />
         </member>
-        <member name="P:Reassigner.Infrastructure.IListPropertyCollection`1.Collection">
+        <member name="M:Reassigner.Infrastructure.Exceptions.InvalidTypeImplementationException.#ctor(System.Type,System.Type,System.Type)">
             <summary>
-            Gets or sets the collection.
+            Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.Exceptions.InvalidTypeImplementationException"/> class.
             </summary>
+            <param name="baseType">Type base type.</param>
+            <param name="expectedType">The expected type.</param>
+            <param name="actualType">The actual type.</param>
         </member>
-        <member name="P:Reassigner.Infrastructure.IListPropertyCollection`1.Properties">
+        <member name="P:Reassigner.Infrastructure.Exceptions.InvalidTypeImplementationException.Message">
             <summary>
-            Gets the properties.
+            <inheritdoc/>
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.INotifyDbContextChanged">
@@ -418,11 +426,6 @@
             <exception cref="T:System.InvalidOperationException"></exception>
             <exception cref="T:System.IndexOutOfRangeException"></exception>
         </member>
-        <member name="T:Reassigner.Models.AgentViewModel">
-            <summary>
-            Represents the model used for displaying the agents page.
-            </summary>
-        </member>
         <member name="T:Reassigner.Models.DashboardViewModel">
             <summary>
             Represents the model used for displaying statistics on the dashboard.
@@ -490,17 +493,6 @@
             <value>
             The return URL.
             </value>
-        </member>
-        <member name="T:Reassigner.Models.ReportsViewModel">
-            <summary>
-            Represents the model used for displaying the reports page.
-            </summary>
-            <seealso cref="T:Reassigner.Infrastructure.AListPropertyCollection`1" />
-        </member>
-        <member name="T:Reassigner.Models.RulesViewModel">
-            <summary>
-            Represents the model used for displaying the rules page.
-            </summary>
         </member>
     </members>
 </doc>
