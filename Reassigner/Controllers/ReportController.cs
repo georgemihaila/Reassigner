@@ -31,7 +31,7 @@ namespace Reassigner.Controllers
             return View(new DetailedReportViewModel()
             {
                 Rule = _context.Rules.FirstOrDefault(o => o.ID == ruleId),
-                Entries = _context.ReassignmentEntries.Where(o => o.Rule.ID == ruleId)
+                Entries = _context.ReassignmentEntries.Where(o => o.Rule.ID == ruleId) as IEnumerable<IReassignmentEntry<ITicket, IAgent, IRule>>
             });
         }
     }
