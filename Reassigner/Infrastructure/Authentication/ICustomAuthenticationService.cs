@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Reassigner.Infrastructure.Authentication
 {
     /// <summary>
-    /// Represents an Active Directory authentication service.
+    /// Represents a custom authentication service.
     /// </summary>
     public interface ICustomAuthenticationService
     {
