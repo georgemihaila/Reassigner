@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 namespace Reassigner.Infrastructure.Authentication
 {
     /// <summary>
-    /// Represents a mock implementation for the <see cref="IActiveDirectoryAuthenticationService"/> interface.
+    /// Represents a mock implementation for the <see cref="ICustomAuthenticationService"/> interface.
     /// </summary>
-    /// <seealso cref="Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService" />
-    public class MockActiveDirectoryAuthenticationService : IActiveDirectoryAuthenticationService
+    /// <seealso cref="Reassigner.Infrastructure.Authentication.ICustomAuthenticationService" />
+    public class MockActiveDirectoryAuthenticationService : ICustomAuthenticationService
     {
         /// <summary>
         /// <inheritdoc/>

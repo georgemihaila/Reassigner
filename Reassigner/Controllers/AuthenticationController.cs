@@ -14,9 +14,9 @@ namespace Reassigner.Controllers
     [Route("/auth/{action}")]
     public class AuthenticationController : Controller
     {
-        private readonly IActiveDirectoryAuthenticationService _authenticationService;
+        private readonly ICustomAuthenticationService _authenticationService;
 
-        public AuthenticationController(IActiveDirectoryAuthenticationService authenticationService)
+        public AuthenticationController(ICustomAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
         }

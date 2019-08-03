@@ -10,13 +10,14 @@ namespace Reassigner.Infrastructure.Dependencies
     /// <inheritdoc/>
     /// </summary>
 
-    public class ApplicationDependencies : IApplicationDependencyProvider
+    public class ApplicationDependencies : IApplicationDependencies
     {
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
         /// 
         public Dictionary<Type, Type> TypeImplementations { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationDependencies"/> class.
         /// </summary>

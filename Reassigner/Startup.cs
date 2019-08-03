@@ -28,8 +28,8 @@ namespace Reassigner
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IActiveDirectoryAuthenticationService, MockActiveDirectoryAuthenticationService>();
-            services.AddSingleton<IApplicationDependencyProvider, ApplicationDependencies>();
+            services.AddSingleton<ICustomAuthenticationService, MockActiveDirectoryAuthenticationService>();
+            services.AddSingleton<IApplicationDependencies, ApplicationDependencies>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddEntityFrameworkSqlServer();
             services.AddControllersWithViews()

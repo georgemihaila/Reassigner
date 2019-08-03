@@ -9,7 +9,7 @@ namespace Reassigner.Infrastructure.Authentication
     /// <summary>
     /// Represents an Active Directory authentication service.
     /// </summary>
-    public class ActiveDirectoryAuthenticationService : IActiveDirectoryAuthenticationService
+    public class ActiveDirectoryAuthenticationService : ICustomAuthenticationService
     {
         /// <summary>
         /// Validates user credentials against Active Directory.

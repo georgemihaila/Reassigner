@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace Reassigner.Infrastructure.Dependencies
 {
     /// <summary>
-    /// Represents a dependency provider.
+    /// Represents application dependencies.
     /// </summary>
-    public interface IApplicationDependencyProvider
+    public interface IApplicationDependencies
     {
         /// <summary>
         /// Gets or sets the required type implementations.

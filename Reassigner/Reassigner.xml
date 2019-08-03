@@ -85,26 +85,26 @@
             <exception cref="T:System.ArgumentNullException">Thrown if an argument is null or empty.</exception>
             <exception cref="T:System.ArgumentException">Thrown if the <paramref name="domainUsername"/> parameter does not contain excatly one '\' domain-username separation character.</exception>
         </member>
-        <member name="T:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService">
+        <member name="T:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService">
             <summary>
             Represents an Active Directory authentication service.
             </summary>
         </member>
-        <member name="M:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
+        <member name="M:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
             <summary>
             Validates user credentials against Active Directory.
             </summary>
         </member>
-        <member name="M:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String)">
+        <member name="M:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService.ValidateCredentials(System.String,System.String)">
             <summary>
             Validates user credentials against Active Directory.
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.Authentication.MockActiveDirectoryAuthenticationService">
             <summary>
-            Represents a mock implementation for the <see cref="T:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService"/> interface.
+            Represents a mock implementation for the <see cref="T:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService"/> interface.
             </summary>
-            <seealso cref="T:Reassigner.Infrastructure.Authentication.IActiveDirectoryAuthenticationService" />
+            <seealso cref="T:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService" />
         </member>
         <member name="M:Reassigner.Infrastructure.Authentication.MockActiveDirectoryAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
             <summary>
@@ -132,12 +132,12 @@
             Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.Dependencies.ApplicationDependencies"/> class.
             </summary>
         </member>
-        <member name="T:Reassigner.Infrastructure.Dependencies.IApplicationDependencyProvider">
+        <member name="T:Reassigner.Infrastructure.Dependencies.IApplicationDependencies">
             <summary>
-            Represents a dependency provider.
+            Represents application dependencies.
             </summary>
         </member>
-        <member name="P:Reassigner.Infrastructure.Dependencies.IApplicationDependencyProvider.TypeImplementations">
+        <member name="P:Reassigner.Infrastructure.Dependencies.IApplicationDependencies.TypeImplementations">
             <summary>
             Gets or sets the required type implementations.
             </summary>
