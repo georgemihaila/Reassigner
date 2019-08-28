@@ -65,6 +65,17 @@
             <inheritdoc/>
             </summary>
         </member>
+        <member name="M:Reassigner.Controllers.AgentController.UploadAgentData(System.Collections.Generic.List{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            Handles an Excel file upload and updates agent data accordingly.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Attributes.NotDisplayableAttribute">
+            <summary>
+            Specifies that a field or property should not be displayed.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
         <member name="T:Reassigner.Infrastructure.Authentication.ActiveDirectoryAuthenticationService">
             <summary>
             Represents an Active Directory authentication service.
@@ -87,7 +98,7 @@
         </member>
         <member name="T:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService">
             <summary>
-            Represents an Active Directory authentication service.
+            Represents a custom authentication service.
             </summary>
         </member>
         <member name="M:Reassigner.Infrastructure.Authentication.ICustomAuthenticationService.ValidateCredentials(System.String,System.String,System.String)">
@@ -116,150 +127,59 @@
             <inheritdoc/>
             </summary>
         </member>
-        <member name="T:Reassigner.Infrastructure.Dependencies.ApplicationDependencies">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Dependencies.ApplicationDependencies.TypeImplementations">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            
-        </member>
-        <member name="M:Reassigner.Infrastructure.Dependencies.ApplicationDependencies.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.Dependencies.ApplicationDependencies"/> class.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.Dependencies.IApplicationDependencies">
-            <summary>
-            Represents application dependencies.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Dependencies.IApplicationDependencies.TypeImplementations">
-            <summary>
-            Gets or sets the required type implementations.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.Entities.IAgent">
+        <member name="T:Reassigner.Infrastructure.Entities.Agent">
             <summary>
             Represents an agent.
             </summary>
         </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IAgent.Name">
+        <member name="P:Reassigner.Infrastructure.Entities.Agent.Name">
             <summary>
             Gets or sets the name.
             </summary>
         </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IAgent.Surname">
+        <member name="P:Reassigner.Infrastructure.Entities.Agent.Surname">
             <summary>
             Gets or sets the surname.
             </summary>
         </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IAgent.Username">
+        <member name="P:Reassigner.Infrastructure.Entities.Agent.Username">
             <summary>
             Gets or sets the username.
             </summary>
         </member>
-        <member name="T:Reassigner.Infrastructure.Entities.IReassignmentEntry`3">
+        <member name="T:Reassigner.Infrastructure.Entities.ReassignmentEntry">
             <summary>
             Represents a reassignment entry.
             </summary>
         </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Ticket">
-            <summary>
-            Gets or sets the ticket.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Agent">
-            <summary>
-            Gets or sets the agent.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.Rule">
-            <summary>
-            Gets or sets the rule.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IReassignmentEntry`3.CompletedTime">
-            <summary>
-            Gets or sets a value indicating whether this <see cref="T:Reassigner.Infrastructure.Entities.ReassignmentEntry"/> is completed.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.Entities.IRule">
-            <summary>
-            Represents a rule.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IRule.Enabled">
-            <summary>
-            Gets or sets a value indicating whether this <see cref="T:Reassigner.Infrastructure.Entities.IRule"/> is enabled.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IRule.LastRan">
-            <summary>
-            Gets or sets the time the rule was last ran.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IRule.Description">
-            <summary>
-            Gets or sets the description.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.Entities.ITicket">
-            <summary>
-            Represents a ticket.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.ITicket.State">
-            <summary>
-            Gets or sets the state of the ticket.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.Entities.IUnique">
-            <summary>
-            Represents a unique entity.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.Entities.IUnique.ID">
-            <summary>
-            Gets or sets the entity ID.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.Entities.ReassignmentEntry">
-            <summary>
-            <inheritdoc/>
-            </summary>
-        </member>
         <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.ID">
             <summary>
-            <inheritdoc/>
+            Gets or sets the ID.
             </summary>
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.Ticket">
             <summary>
-            <inheritdoc/>
+            Gets or sets the ticket.
             </summary>
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.Agent">
             <summary>
-            <inheritdoc/>
+            Gets or sets the agent.
             </summary>
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.Rule">
             <summary>
-            <inheritdoc/>
+            Gets or sets the rule.
             </summary>
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.ReassignmentEntry.CompletedTime">
             <summary>
-            <inheritdoc/>
+            Gets or sets the time the reassignment was completed.
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.Entities.Rule">
             <summary>
-            <inheritdoc/>
+            Represents a rule.
             </summary>
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.Rule.ID">
@@ -282,20 +202,39 @@
             <inheritdoc/>
             </summary>
         </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Rule.Sql">
+            <summary>
+            Gets the SQL code.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Rule.Parameters">
+            <summary>
+            Gets or sets the parameters.
+            </summary>
+        </member>
         <member name="T:Reassigner.Infrastructure.Entities.Ticket">
             <summary>
-            <inheritdoc/>
+            Represents a ticket.
             </summary>
-            <seealso cref="T:Reassigner.Infrastructure.Entities.ITicket" />
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.Ticket.ID">
             <summary>
-            <inheritdoc/>
+            Gets or sets the ID.
             </summary>
         </member>
         <member name="P:Reassigner.Infrastructure.Entities.Ticket.State">
             <summary>
-            <inheritdoc/>
+            Gets or sets the state.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Ticket.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Entities.Ticket.Priority">
+            <summary>
+            Gets or sets the priority.
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.Exceptions.InvalidTypeImplementationException">
@@ -317,6 +256,126 @@
             <inheritdoc/>
             </summary>
         </member>
+        <member name="T:Reassigner.Infrastructure.Exceptions.KeyAlreadyDefinedException">
+            <summary>
+            The exception that is thrown when a key is already defined.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Reassigner.Infrastructure.Exceptions.KeyAlreadyDefinedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.Exceptions.KeyAlreadyDefinedException"/> class.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="P:Reassigner.Infrastructure.Exceptions.KeyAlreadyDefinedException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.Extensions.ListExtensions">
+            <summary>
+            Represents list extensions.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.Extensions.ListExtensions.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Returns distinct elements from a sequence based on a single field.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.TypeExtensions">
+            <summary>
+            Provides type methods based on the <see cref="N:System.Reflection"/> namespace.
+            </summary>
+        </member>
+        <member name="F:Reassigner.Infrastructure.TypeExtensions._genericPropsDictionary">
+            <summary>
+            Dictionary for storing properties of generic type arguments.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.TypeExtensions.GetPropertiesOfGenericArgument(System.Type,System.Int32)">
+            <summary>
+            Gets the properties from the generic arguments of a type.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="genericIndex">The index of the generic type.</param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+            <exception cref="T:System.IndexOutOfRangeException"></exception>
+        </member>
+        <member name="M:Reassigner.Infrastructure.TypeExtensions.HasAttribute``1(System.Reflection.PropertyInfo)">
+            <summary>
+            Determines whether this <see cref="T:System.Reflection.PropertyInfo"/> has an attribute of type <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.TypeExtensions.IsNumeric(System.Type)">
+            <summary>
+            Determines whether the specified type is numeric.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.FieldMethodValue">
+            <summary>
+            Represents a field-method-value pair.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.FieldMethodValue.ID">
+            <summary>
+            Gets or sets the ID.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.FieldMethodValue.Field">
+            <summary>
+            Gets or sets the field.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.FieldMethodValue.Method">
+            <summary>
+            Gets or sets the field.
+            </summary>
+        </member>
+        <member name="P:Reassigner.Infrastructure.FieldMethodValue.Value">
+            <summary>
+            Gets or sets the field.
+            </summary>
+        </member>
+        <member name="T:Reassigner.Infrastructure.FileHandlers.ExcelFile">
+            <summary>
+            Represents an Excel file.
+            </summary>
+        </member>
+        <member name="M:Reassigner.Infrastructure.FileHandlers.ExcelFile.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Reassigner.Infrastructure.FileHandlers.ExcelFile" /> class.
+            </summary>
+            <param name="path">The Excel file path.</param>
+            <param name="hasHeader">Whether the table has a header.</param>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:Reassigner.Infrastructure.FileHandlers.ExcelFile.GetRow``1(System.Int32)">
+            <summary>
+            Gets the row at the specified index as a list of objects.
+            </summary>
+            <typeparam name="T">The type of object</typeparam>
+            <param name="index">The row index.</param>
+        </member>
+        <member name="M:Reassigner.Infrastructure.FileHandlers.ExcelFile.GetColumn``1(System.Int32)">
+            <summary>
+            Gets the column at the specified index as a list of objects.
+            </summary>
+            <typeparam name="T">The type of object</typeparam>
+            <param name="index">The row index.</param>
+        </member>
+        <member name="M:Reassigner.Infrastructure.FileHandlers.ExcelFile.AsEntityList``1(System.Func{System.String,System.String})">
+            <summary>
+            Automatically matches Excel columns to the properties of type <typeparamref name="T" /> and returns a populated list of objects.
+            </summary>
+            <param name="stringTransformOperation">The operation that will be applied to each column and each property name in order to determine equality.</param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Reassigner.Infrastructure.FileHandlers.ExcelFile.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
         <member name="T:Reassigner.Infrastructure.INotifyDbContextChanged">
             <summary>
             Notifies clients that <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> data has changed.
@@ -327,34 +386,14 @@
             Occurs when <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> data changes.
             </summary>
         </member>
-        <member name="T:Reassigner.Infrastructure.IReassignerContext`4">
+        <member name="T:Reassigner.Infrastructure.ISqlConvertible">
             <summary>
-            Represents an application context.
+            Represents an entity which can be converted to an SQL query.
             </summary>
         </member>
-        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.Tickets">
+        <member name="P:Reassigner.Infrastructure.ISqlConvertible.Sql">
             <summary>
-            Gets or sets the tickets.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.Agents">
-            <summary>
-            Gets or sets the agents
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.Rules">
-            <summary>
-            Gets or sets the rules.
-            </summary>
-        </member>
-        <member name="P:Reassigner.Infrastructure.IReassignerContext`4.ReassignmentEntries">
-            <summary>
-            Gets or sets the reassignment entries.
-            </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.ReassignerContextExtensions">
-            <summary>
-            Provides extensions for the <see cref="T:Reassigner.Infrastructure.IReassignerContext`4"/> interface.
+            Gets the SQL code.
             </summary>
         </member>
         <member name="T:Reassigner.Infrastructure.ReassigningService">
@@ -397,34 +436,10 @@
             Represents a random number generator based on the <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/> class.
             </summary>
         </member>
-        <member name="M:Reassigner.Infrastructure.RNG.GetInstance">
-            <summary>
-            Gets an instance of the current class.
-            </summary>
-        </member>
         <member name="M:Reassigner.Infrastructure.RNG.GetRandomString(System.Int32)">
             <summary>
             Gets a random string.
             </summary>
-        </member>
-        <member name="T:Reassigner.Infrastructure.TypeExtensions">
-            <summary>
-            Provides type methods based on the <see cref="N:System.Reflection"/> namespace.
-            </summary>
-        </member>
-        <member name="F:Reassigner.Infrastructure.TypeExtensions._genericPropsDictionary">
-            <summary>
-            Dictionary for storing properties of generic type arguments.
-            </summary>
-        </member>
-        <member name="M:Reassigner.Infrastructure.TypeExtensions.GetPropertiesOfGenericArgument(System.Type,System.Int32)">
-            <summary>
-            Gets the properties from the generic arguments of a type.
-            </summary>
-            <param name="type">The type.</param>
-            <param name="genericIndex">The index of the generic type.</param>
-            <exception cref="T:System.InvalidOperationException"></exception>
-            <exception cref="T:System.IndexOutOfRangeException"></exception>
         </member>
         <member name="T:Reassigner.Models.DashboardViewModel">
             <summary>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Reassigner.Infrastructure;
-using Reassigner.Infrastructure.Dependencies;
 using Reassigner.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace Reassigner
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public class ApplicationDbContext : DbContext, IReassignerContext<Ticket, Agent, Rule, ReassignmentEntry>, INotifyDbContextChanged
+    public class ApplicationDbContext : DbContext, INotifyDbContextChanged
     {
         /// <summary>
         /// <inheritdoc/>

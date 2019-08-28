@@ -1,0 +1,255 @@
+﻿@using Reassigner.Infrastructure;
+@using Reassigner.Infrastructure.Attributes;
+@using Reassigner.Infrastructure.Entities;
+@using Newtonsoft.Json;
+@using System.Reflection;
+
+@model Rule
+@inject ApplicationDbContext _context
+
+<script>
+    $(document).ready(function () {
+        $.fn.destroyDropdown = function() {
+	        return $(this).each(function() {
+		        $(this).parent().dropdown( 'destroy' ).replaceWith( $(this) );
+	        });
+        };
+        $("#cond-add").on('click', function () {
+            addBlankCondition();
+        });
+        addBlankCondition();
+        fillEditor(@(Html.Raw(JsonConvert.SerializeObject(Model))));
+    });
+
+    function fillEditor(rule) {
+        if (rule != undefined) {
+            $("#r_desc").val(rule.Description);
+        }
+    }
+     @{
+         var enumProps = typeof(Ticket).GetProperties().Where(x => x.PropertyType.IsEnum);
+         var allProps = typeof(Ticket).GetProperties().Where(x => !x.HasAttribute<NotDisplayableAttribute>());
+         var numeric = typeof(Ticket).GetProperties().Where(x => !x.HasAttribute<NotDisplayableAttribute>() && x.PropertyType.IsNumeric() && !x.PropertyType.IsEnum);
+         var enumNames = enumProps.Select(x => x.Name).ToArray();
+         var enumvals = enumProps.Select(x => Enum.GetValues(x.PropertyType)).ToArray();
+         var dict = new Dictionary<string, Array>();
+         for (int i = 0; i < enumNames.Length; i++)
+             dict[enumNames[i]] = enumvals[i];
+
+    }
+    var enums = @Html.Raw(JsonConvert.SerializeObject(dict));
+    var allProps = @Html.Raw(JsonConvert.SerializeObject(allProps.Select(x => x.Name)));
+    var numerics = @Html.Raw(JsonConvert.SerializeObject(numeric.Select(x => x.Name)));
+    var conditionCount = 0;
+
+    var fieldDropdownBaseName = @Html.Raw(JsonConvert.SerializeObject(RNG.GetRandomString(16)));
+    var methodDropdownBaseName = @Html.Raw(JsonConvert.SerializeObject(RNG.GetRandomString(16)));
+    var valueInputBaseName = @Html.Raw(JsonConvert.SerializeObject(RNG.GetRandomString(16)));
+    var conditionContainerBaseName = @Html.Raw(JsonConvert.SerializeObject(RNG.GetRandomString(16)));
+    var andButtonBaseName = @Html.Raw(JsonConvert.SerializeObject(RNG.GetRandomString(16)));
+    var orButtonBaseName = @Html.Raw(JsonConvert.SerializeObject(RNG.GetRandomString(16)));
+
+    var numericOps = ["equals", "does not equal", "less than", "greater than"];
+    var stringOps = ["is", "is not", "contains", "does not contain", "starts with", "ends with"];
+    var enumOps = ["is", "is not"];
+
+    function addBlankCondition() {
+        addCondition(undefined, undefined, undefined);
+    }
+
+    function getFieldType(fieldName) {
+        if (enums[fieldName] !== undefined)
+            return "enum";
+        for (let i = 0; i < numerics.length; i++)
+            return "numeric";
+        return "string";
+    }
+
+    function createDropdown(id, placeholder, ops) {
+        let result = '<select id="[0]" class="ui dropdown"><option value="">[1]</option>'.replace('[0]', id).replace('[1]', placeholder);
+        for (let i = 0; i < ops.length; i++) {
+            result += '<option>';
+            result += ops[i];
+            result += '</option>'
+        }
+        result += "</select>"
+        return result;
+    }
+
+    function addCondition(field, method, value) {
+        if (conditionCount > 0) {
+            $("#fselcontainer").append('<div class="ui divider" style="width:0px;"></div><button class="mini ui button" id="[0]" style="background-color:green; color: white;">and</button><button class="mini ui button" id="[1]">or</button><div class="ui divider" style="width:0px;"></div>'.replace('[0]', andButtonBaseName + conditionCount).replace('[1]', orButtonBaseName + conditionCount));
+            $("#" + andButtonBaseName + conditionCount).click(function () {
+                let index = parseInt($(this).attr('id').replace(andButtonBaseName, ''));
+                $("#" + andButtonBaseName + index).css('background-color', 'green');
+                $("#" + andButtonBaseName + index).css('color', 'white');
+
+                $("#" + orButtonBaseName + index).css('background-color', '');
+                $("#" + orButtonBaseName + index).css('color', 'black');
+            });
+             $("#" + orButtonBaseName + conditionCount).click(function () {
+                let index = parseInt($(this).attr('id').replace(orButtonBaseName, ''));
+                 $("#" + andButtonBaseName + index).css('background-color', '');
+                 $("#" + andButtonBaseName + index).css('color', 'black');
+
+                 $("#" + orButtonBaseName + index).css('background-color', 'green');
+                 $("#" + orButtonBaseName + index).css('color', 'white');
+            });
+        }
+
+        let conditionContainerID = conditionContainerBaseName + conditionCount;
+        $("#fselcontainer").append('<div id="[0]"></div>'.replace('[0]', conditionContainerID));
+
+        let fieldDropdownID = fieldDropdownBaseName + conditionCount;
+
+        $("#" + conditionContainerID).append(createDropdown(fieldDropdownID, "Field", allProps));
+        $("#" + fieldDropdownID).dropdown();
+        $("#" + fieldDropdownID).change(function () {
+            let value = $(this).val();
+            let index = parseInt($(this).attr('id').replace(fieldDropdownBaseName, ''));
+            let conditionContainer = $("#" + conditionContainerBaseName + index);
+
+            let currentMethodDropdownID = methodDropdownBaseName + index;
+            let currentValueInputID = valueInputBaseName + index;
+
+            if ($("#" + currentMethodDropdownID) !== undefined) {
+                $("#" + currentMethodDropdownID).destroyDropdown();
+                $("#" + currentMethodDropdownID).remove();
+            }
+            switch (getFieldType(value)) {
+                case "enum":
+                    if ($("#p_" + currentValueInputID) !== undefined)
+                        $("#p_" + currentValueInputID).remove();
+
+                    if ($("#" + currentValueInputID) !== undefined) {
+                        $("#" + currentValueInputID).destroyDropdown();
+                        $("#" + currentValueInputID).remove();
+                    }
+
+                    conditionContainer.append(createDropdown(currentMethodDropdownID, "Condition", enumOps));
+                    conditionContainer.append(createDropdown(currentValueInputID, "Value", enums[value]));
+                    $("#" + currentValueInputID).dropdown();
+                    break;
+                case "numeric":
+                    conditionContainer.append(createDropdown(currentMethodDropdownID, "Condition", numericOps));
+                    conditionContainer.append('<div id="[1]" class="ui input"> <input id="[0]" type="text" placeholder="Value"></div>'.replace('[0]', currentValueInputID).replace('[1]', 'p_' + currentValueInputID));
+                    break;
+                case "string":
+                   if ($("#p_" + currentValueInputID) !== undefined)
+                        $("#p_" + currentValueInputID).remove();
+
+                    if ($("#" + currentValueInputID) !== undefined) {
+                        $("#" + currentValueInputID).destroyDropdown();
+                        $("#" + currentValueInputID).remove();
+                    }
+                    conditionContainer.append(createDropdown(currentMethodDropdownID, "Condition", stringOps));
+                    conditionContainer.append('<div id="[1]" class="ui input"> <input id="[0]" type="text" placeholder="Value"></div>'.replace('[0]', currentValueInputID).replace('[1]', 'p_' + currentValueInputID));
+                    break;
+            }
+            $("#" + currentMethodDropdownID).dropdown();
+            $("#" + currentMethodDropdownID).change(function () {
+                let value = $(this).val();
+                let index = parseInt($(this).attr('id').replace(fieldDropdownBaseName, ''));
+                let conditionContainer = $("#" + conditionContainerBaseName + index);
+
+            });
+        });
+
+        if (field !== undefined) {
+
+        }
+         if (method !== undefined) {
+
+        }
+         if (value !== undefined) {
+
+        }
+        conditionCount++;
+    }
+
+</script>
+
+
+
+<div id="editor-container">
+    <div id="editor">
+
+        @if (Model != null)
+        {
+            <div class="ui labeled input">
+                <div id="r_id" class="ui label">
+                    @("ID: " + Model.ID)
+                </div>
+            </div>
+        }
+
+    <div class="ui segment">
+        <div class="ui label">
+            Ticket fields
+        </div>
+        <div class="ui divider"></div>
+        <div id="fselcontainer" class="ui segment">
+
+        </div>
+        <button id="cond-add" class="ui right labeled icon button">
+            <i class="right plus icon"></i>
+            Add condition
+        </button>
+    </div>
+
+        <div class="ui segment">
+            <div class="ui label">
+                Target agents
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui segment">
+
+            </div>
+        </div>
+
+        <div class="ui segment">
+            <div class="ui label">
+                Assignment mode
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui segment">
+
+            </div>
+        </div>
+
+        <div class="ui segment">
+            <div class="ui label">
+                Rule timing
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui segment">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="ui divider"></div>
+    <div class="right" style="float:right;">
+        <a asp-controller="Rules" asp-action="Simulate">
+            <div class="ui button">
+                Simulate
+            </div>
+        </a>
+
+        <a asp-controller="Rules" asp-action="Index">
+            <div class="ui button">
+                Cancel
+            </div>
+        </a>
+
+        <a>
+            <div class="ui button">
+                Save
+            </div>
+        </a>
+    </div>
+
+    <div id="simulation">
+
+    </div>
+</div>

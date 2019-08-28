@@ -14,11 +14,11 @@ namespace Reassigner.Models
         /// <summary>
         /// Gets or sets the rule.
         /// </summary>
-        public IRule Rule { get; set; }
+        public Rule Rule { get; set; }
 
         /// <summary>
         /// Gets or sets the entries associated with this rule.
         /// </summary>
-        public IEnumerable<IReassignmentEntry<ITicket, IAgent, IRule>> Entries { get; set; }
+        public IEnumerable<ReassignmentEntry> Entries { get; set; }
     }
 }

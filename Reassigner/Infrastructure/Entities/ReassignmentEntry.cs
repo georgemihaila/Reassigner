@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 namespace Reassigner.Infrastructure.Entities
 {
     /// <summary>
-    /// <inheritdoc/>
+    /// Represents a reassignment entry.
     /// </summary>
-    public class ReassignmentEntry : IReassignmentEntry<Ticket, Agent, Rule>
+    public class ReassignmentEntry
     {
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the ID.
         /// </summary>
         public string ID { get; set; }
 
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the ticket.
         /// </summary>
         public Ticket Ticket { get; set; }
 
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the agent.
         /// </summary>
         public Agent Agent { get; set; }
 
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the rule.
         /// </summary>
         public Rule Rule { get; set; }
 
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the time the reassignment was completed.
         /// </summary>
-        public DateTime CompletedTime { get; set; }
+        public DateTime? CompletedTime { get; set; }
 
     }
 }

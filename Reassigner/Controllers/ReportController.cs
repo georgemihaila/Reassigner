@@ -23,7 +23,7 @@ namespace Reassigner.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.ReassignmentEntries as IEnumerable<IReassignmentEntry<ITicket, IAgent, IRule>>);
+            return View(_context.ReassignmentEntries);
         }
 
         public IActionResult RuleReport(string ruleId)
@@ -31,7 +31,7 @@ namespace Reassigner.Controllers
             return View(new DetailedReportViewModel()
             {
                 Rule = _context.Rules.FirstOrDefault(o => o.ID == ruleId),
-                Entries = _context.ReassignmentEntries.Where(o => o.Rule.ID == ruleId) as IEnumerable<IReassignmentEntry<ITicket, IAgent, IRule>>
+                Entries = _context.ReassignmentEntries.Where(o => o.Rule.ID == ruleId)
             });
         }
     }

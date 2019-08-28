@@ -30,7 +30,7 @@ namespace Reassigner.Controllers
 
         public IActionResult Edit(string id)
         {
-            return ((id == null || _context.Rules.Count(o => o.ID == id) == 0)) ? View() : View(_context.Rules.First(o => o.ID == id));
+            return (id == null || _context.Rules.Count(o => o.ID == id) == 0) ? View() : View(_context.Rules.First(o => o.ID == id));
         }
 
         [HttpPost]

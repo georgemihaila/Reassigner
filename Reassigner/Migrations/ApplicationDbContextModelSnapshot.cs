@@ -21,15 +21,13 @@ namespace Reassigner.Migrations
 
             modelBuilder.Entity("Reassigner.Infrastructure.Entities.Agent", b =>
                 {
-                    b.Property<string>("ID");
+                    b.Property<string>("Username");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("Surname");
 
-                    b.Property<string>("Username");
-
-                    b.HasKey("ID");
+                    b.HasKey("Username");
 
                     b.ToTable("Agents");
                 });
@@ -38,9 +36,9 @@ namespace Reassigner.Migrations
                 {
                     b.Property<string>("ID");
 
-                    b.Property<string>("AgentID");
+                    b.Property<string>("AgentUsername");
 
-                    b.Property<DateTime>("CompletedTime");
+                    b.Property<DateTime?>("CompletedTime");
 
                     b.Property<string>("RuleID");
 
@@ -48,7 +46,7 @@ namespace Reassigner.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AgentID");
+                    b.HasIndex("AgentUsername");
 
                     b.HasIndex("RuleID");
 
@@ -76,6 +74,10 @@ namespace Reassigner.Migrations
                 {
                     b.Property<string>("ID");
 
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Priority");
+
                     b.Property<int>("State");
 
                     b.HasKey("ID");
@@ -87,7 +89,7 @@ namespace Reassigner.Migrations
                 {
                     b.HasOne("Reassigner.Infrastructure.Entities.Agent", "Agent")
                         .WithMany()
-                        .HasForeignKey("AgentID");
+                        .HasForeignKey("AgentUsername");
 
                     b.HasOne("Reassigner.Infrastructure.Entities.Rule", "Rule")
                         .WithMany()

@@ -3,5 +3,54 @@
     ViewData["Title"] = "Agent management";
 }
 
-@model IEnumerable<IAgent>
+@model IEnumerable<Agent>
 
+@if (Model == null || Model.Count() == 0)
+{
+    <h3>No agent data available.</h3>
+}
+else
+{
+    <table id="rules_table" class="ui definition table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var x in Model)
+            {
+            <tr>
+                <td>@x.Username</td>
+                <td>@x.Name</td>
+                <td>@x.Surname</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+<div id="uploadcontainer">
+    <form id="fileform" method="post" enctype="multipart/form-data" asp-controller="Agent" asp-action="UploadAgentData">
+        <input type="file" name="files" class="inputfile" id="embedpollfileinput" hidden accept=".xls,.xlsx" />
+        <label id="embedpollfileinputlabel" for="embedpollfileinput" class="ui small blue button">
+            <i class="ui file excel icon"></i>
+            Choose Excel file
+        </label>
+    </form>
+    <div id="uploadactions" style="margin-top:5px;">
+
+    </div>
+</div>
+
+<script>
+    $("#embedpollfileinput").change(function () {
+        $("#embedpollfileinputlabel").removeClass('blue');
+        $("#embedpollfileinputlabel").addClass('green');
+        $("#uploadactions").html('<button id="upload" style="margin-top:5px;" class="ui button">Upload "[0]"</button>'.replace('[0]', $("#embedpollfileinput")[0].files[0]['name']));
+        $("#upload").click(function () {
+            $("#fileform").submit();
+        });
+    });
+</script>

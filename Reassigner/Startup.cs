@@ -13,7 +13,6 @@ using Reassigner.Infrastructure.Entities;
 using Microsoft.Extensions.Logging;
 using Reassigner.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Reassigner.Infrastructure.Dependencies;
 
 namespace Reassigner
 {
@@ -29,13 +28,19 @@ namespace Reassigner
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ICustomAuthenticationService, MockActiveDirectoryAuthenticationService>();
-            services.AddSingleton<IApplicationDependencies, ApplicationDependencies>();
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<ApplicationDbContext>(options => 
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+#if DEBUG
+                options.EnableSensitiveDataLogging();
+#endif
+            });
             services.AddEntityFrameworkSqlServer();
             services.AddControllersWithViews()
                     .AddNewtonsoftJson();
             services.AddRazorPages();
-            services.AddHostedService<ReassigningService>();
+            //services.AddHostedService<ReassigningService>();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(CookieAuthenticationDefaults.AuthenticationScheme, authBuilder =>

@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Reassigner.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace Reassigner.Infrastructure
     {
         private ApplicationDbContext _context;
         private Timer _timer;
+
         public IServiceScopeFactory _serviceScopeFactory;
 
         /// <summary>
@@ -34,10 +37,9 @@ namespace Reassigner.Infrastructure
         {
             if (_context == null)
             {
-                using (var scope = _serviceScopeFactory.CreateScope())
-                {
-                    _context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                }
+                var scope = _serviceScopeFactory.CreateScope();
+               _context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                await _context.Database.OpenConnectionAsync();
             }
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
@@ -45,7 +47,7 @@ namespace Reassigner.Infrastructure
 
         private void DoWork(object state)
         {
-            Console.WriteLine("Doing work");
+
         }
 
         /// <summary>

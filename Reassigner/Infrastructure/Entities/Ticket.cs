@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reassigner.Infrastructure.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,19 +7,29 @@ using System.Threading.Tasks;
 namespace Reassigner.Infrastructure.Entities
 {
     /// <summary>
-    /// <inheritdoc/>
+    /// Represents a ticket.
     /// </summary>
-    /// <seealso cref="Reassigner.Infrastructure.Entities.ITicket" />
-    public class Ticket : ITicket
+    public class Ticket
     {
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the ID.
         /// </summary>
+        [NotDisplayable]
         public string ID { get; set; }
 
         /// <summary>
-        /// <inheritdoc/>
+        /// Gets or sets the state.
         /// </summary>
         public State State { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the priority.
+        /// </summary>
+        public Priority Priority { get; set; }
     }
 }

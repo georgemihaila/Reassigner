@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace Reassigner.Infrastructure.Entities
 {
     /// <summary>
-    /// <inheritdoc/>
+    /// Represents a rule.
     /// </summary>
-    public class Rule : IRule
+    public class Rule : ISqlConvertible
     {
         /// <summary>
         /// <inheritdoc/>
@@ -29,5 +29,35 @@ namespace Reassigner.Infrastructure.Entities
         /// <inheritdoc/>
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets the SQL code.
+        /// </summary>
+        public string Sql
+        {
+            get
+            {
+                string result = "SELECT * FROM Rules WHERE (";
+                Dictionary<string, string> operations = new Dictionary<string, string>()
+                {
+                    { "is", "==" },
+                    { "is not", "!=" },
+                };
+                for (int i = 0; i < Parameters.Count(); i++)
+                {
+                    result += string.Format("{0} {1} {2}");
+                    if (i != Parameters.Count() - 1)
+                        result += " and ";
+                }
+                return result + ")";
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the parameters.
+        /// </summary>
+        IEnumerable<FieldMethodValue> Parameters { get; set; }
+
+
     }
 }

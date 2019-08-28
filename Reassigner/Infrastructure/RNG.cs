@@ -12,44 +12,22 @@ namespace Reassigner.Infrastructure
     /// </summary>
     public class RNG
     {
-        private static RNGCryptoServiceProvider _instance;
-
-        private RNG(RNGCryptoServiceProvider provider)
-        {
-            _instance = provider;
-        }
-
-        /// <summary>
-        /// Gets an instance of the current class.
-        /// </summary>
-        public static RNG GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new RNGCryptoServiceProvider();
-            }
-            return new RNG(_instance);
-        }
+        private static RNGCryptoServiceProvider _instance = new RNGCryptoServiceProvider();
 
         /// <summary>
         /// Gets a random string.
         /// </summary>
-        public string GetRandomString(int length = 7)
+        public static string GetRandomString(int length = 6)
         {
             const string valid = "ABCDEF0123456789";
             StringBuilder res = new StringBuilder();
-            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            byte[] uintBuffer = new byte[sizeof(uint)];
+            while (length-- > 0)
             {
-                byte[] uintBuffer = new byte[sizeof(uint)];
-
-                while (length-- > 0)
-                {
-                    rng.GetBytes(uintBuffer);
-                    uint num = BitConverter.ToUInt32(uintBuffer, 0);
-                    res.Append(valid[(int)(num % (uint)valid.Length)]);
-                }
+                _instance.GetBytes(uintBuffer);
+                uint num = BitConverter.ToUInt32(uintBuffer, 0);
+                res.Append(valid[(int)(num % (uint)valid.Length)]);
             }
-
             return res.ToString();
         }
     }
